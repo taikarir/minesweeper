@@ -90,7 +90,7 @@ def setUpMines(mines,known):
 def clickedOn(known,x,y,flag):
     if flag==0:
         if mines[y][x]==1:
-            print("Game Over")
+            known[y][x]=1
         elif mines[y][x]==0 and known[y][x]==0:
             known[y][x]=1
             known=uncoverZeroes(known)
@@ -104,8 +104,10 @@ def checkWin():
     l=0
     for i in range(0,dimy):
         for j in range(0,dimx):
-            if known[i][j]==1 or mines[i][j]==1:
+            if (known[i][j]==1 and not  mines[i][j]==1) or (mines[i][j]==1 and not known[i][j]):
                 l+=1
+            if known[i][j]==1 and mines[i][j]==1:
+                return "Over"
     if l==dimx*dimy:
         return True
     else:
@@ -118,7 +120,10 @@ while True:
     fy=int(input("y? "))
     flag=int(input("flag? "))
     known=clickedOn(known,fx,fy,flag)
-    if checkWin():
+    if checkWin()==True:
+        print("Congrats! You win!")
+        break
+    elif checkWin()=="Over":
+        print("You lost.")
         break
     prtscr()
-print("Congrats! You win!")
