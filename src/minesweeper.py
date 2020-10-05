@@ -56,8 +56,13 @@ def uncoverZeroes(known):
 #prints the current game state based on which tiles are known
 def prtscr():
     print("\n")
+    d="       "
+    for i in range(0,dimx):
+        d+=str(i);d+="    "
+    print(d);print("\n\n")
     for i in range(0,dimy):
         d=""
+        d+=str(i);d+="      "
         for j in range(0,dimx):
             if known[i][j]==0:
                 d+="?"
@@ -116,9 +121,14 @@ mines,known=setUpMines(mines,known)
 prtscr()
 while True:
     print("=============")
-    fx=int(input("x? "))
-    fy=int(input("y? "))
-    flag=int(input("flag? "))
+    fx="";fy="";flag=""
+    while not fx.isnumeric():
+        fx=input("x? ")
+    while not fy.isnumeric():
+        fy=input("y? ")
+    while not flag.isnumeric():
+        flag=input("flag? ")
+    fx=int(fx);fy=int(fy);flag=int(flag)
     known=clickedOn(known,fx,fy,flag)
     if checkWin()==True:
         print("Congrats! You win!")
