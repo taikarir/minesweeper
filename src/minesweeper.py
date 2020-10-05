@@ -3,7 +3,10 @@ import random
 dimx=9
 dimy=9
 #number of hidden mines
-mineCount=2
+mineCount=""
+while not mineCount.isnumeric():
+    mineCount=input("Number of mines? ")
+mineCount=int(mineCount)
 #array containing which tiles are known
 known=[]
 #array containing which tiles have mines
