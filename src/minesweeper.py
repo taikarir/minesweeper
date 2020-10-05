@@ -3,7 +3,7 @@ import random
 dimx=9
 dimy=9
 #number of hidden mines
-mineCount=10
+mineCount=2
 #array containing which tiles are known
 known=[]
 #array containing which tiles have mines
@@ -109,7 +109,7 @@ def checkWin():
     l=0
     for i in range(0,dimy):
         for j in range(0,dimx):
-            if (known[i][j]==1 and not  mines[i][j]==1) or (mines[i][j]==1 and not known[i][j]):
+            if (known[i][j]==1 and not  mines[i][j]==1) or (mines[i][j]==1 and not known[i][j]==1):
                 l+=1
             if known[i][j]==1 and mines[i][j]==1:
                 return "Over"
